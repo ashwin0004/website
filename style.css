@@ -438,3 +438,266 @@ float: right;
     font-weight: 600;
   }
 
+
+
+  /* Footer Section */
+.footer {
+    padding: 0 20px;
+    z-index: 10;
+    background-color: #000;
+    min-height: 298px;
+    width: 100%;
+    color: #fff;
+    overflow: scroll;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    background-color: #000000;
+    justify-content: space-around;
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: 0 auto;
+    padding: 76px 0;
+    height: 100%;
+}
+
+.points {
+    color: #808080;
+    font-size: 15px;
+    font-weight: 600;
+    /*    border: 1px solid white;*/
+    width: 300px;
+    margin: 26px 0px 10px 15px;
+    /*    padding: 15px 0px 0px 0px;*/
+}
+
+.footer-li {
+    padding: 20px 10px 2px 0px;
+}
+
+.footer-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-li a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.footer-li a:hover {
+    font-weight: 600;
+}
+
+.points img {
+    border: 2px solid #808080;
+    padding: 10px;
+    margin: 30px 0px 10px 57px;
+    border-radius: 10px;
+    transition: transform 0.5s;
+}
+
+.points img:hover {
+    transform: scale(1.06);
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ...........2nd page........ */
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Container for content */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+
+
+/* Hero section */
+.hero {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 10px;
+}
+
+/* Simple cards */
+.hero-grid {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+/* Stats */
+.stats {
+  background: #fff3e0;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat {
+  margin: 10px 0;
+}
+
+/* Timeline */
+.timeline {
+  padding: 20px;
+}
+
+.timeline-list li {
+  margin: 8px 0;
+}
+
+/* Team */
+.team {
+  padding: 20px;
+}
+
+.team-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #eee;
+  margin: auto;
+  line-height: 50px;
+}
+
+/* Contact */
+.contact {
+  background: #f1f1f1;
+  padding: 20px;
+}
+
+.contact a {
+  color: orange;
+  text-decoration: none;
+}
+
+/* Footer */
+.site-footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 45rem;
+  font-weight: bolder;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
