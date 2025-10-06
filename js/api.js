@@ -1,29 +1,34 @@
 const container = document.getElementById('food-container');
-
-
-
+let currentPage = 1; // Track current page
+let lastQuery = '';  // Keep track of last search query
 
 // Create the popup
 const popup = document.createElement('div');
 popup.id = 'popup-message';
-document.body.appendChild(popup); 
+document.body.appendChild(popup);
 
-// Function creates here to show popup message
 function showPopup(message) {
-  popup.textContent = message;          // message evidai set akkum
-  popup.classList.add('display');          // visible akkan
+  popup.textContent = message;
+  popup.classList.add('display');
   setTimeout(() => {
     popup.classList.remove('display');     
   }, 2500);
 }
 
+function showLoading() {
+  container.innerHTML = `
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>🍕 Loading delicious food items 🍕...</p>
+    </div>
+  `;
+}
 
 function displayMeals(meals) {
   container.innerHTML = ''; 
-  if (!meals) {
-    showPopup("No food items found!"); 3       
-
-    container.innerHTML = '<p>No food found!</p>';
+  if (!meals || meals.length === 0) {
+    showPopup("No food items found!");
+    container.innerHTML = '<p>No food found!....</p>';
     return;
   }
 
@@ -31,34 +36,74 @@ function displayMeals(meals) {
     const card = document.createElement('div');
     card.className = 'food-card';
 
+    const imageUrl = meal.image_url || meal.image_front_url || 'https://via.placeholder.com/200x200?text=No+Image';
+    const productName = meal.product_name || 'Unknown Product';
+    const brands = meal.brands || 'No brand';
+
     card.innerHTML = `
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-      <h3>${meal.strMeal}</h3>
+      <img src="${imageUrl}" alt="${productName}">
+      <h3>${productName}</h3>
+      <p class="brand">${brands}</p>
     `;
     container.appendChild(card);
   });
+
+  // Add pagination buttons
+  const pagination = document.createElement('div');
+  pagination.className = 'pagination';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = 'Previous';
+  prevBtn.disabled = currentPage === 1; // Disable on first page
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      fetchMeals(lastQuery);
+    }
+  });
+
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = 'Next';
+  nextBtn.addEventListener('click', () => {
+    currentPage++;
+    fetchMeals(lastQuery);
+  });
+
+  pagination.appendChild(prevBtn);
+  pagination.appendChild(nextBtn);
+  container.appendChild(pagination);
 }
 
-function fetchMeals(query = 'pizza') {
-  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+function fetchMeals(query) {
+  if (!query) query = ''; // default to empty
+  lastQuery = query; // store query for pagination
+  showLoading();
+
+  const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&page=${currentPage}&json=true`;
+
+  fetch(url)
     .then(res => res.json())
-    .then(data => displayMeals(data.meals))
-    .catch(err => console.error('Error:', err));
+    .then(data => displayMeals(data.products))
+    .catch(err => {
+      console.error('Error:', err);
+      container.innerHTML = '<p>Error loading food items. Please try again.</p>';
+      showPopup('Error loading food items!');
+    });
 }
-
-
-fetchMeals();
-
 
 function searchFood() {
-  const query = document.getElementById('search').value;
+  const query = document.getElementById('search').value.trim();
+  if(query === '') {
+    showPopup('Please enter a Food Item to search!');
+    return;
+  }
+  currentPage = 1; // reset to first page
   fetchMeals(query);
 }
 
-
-
-
-
-
-
-
+// Trigger search on enter key
+document.getElementById('search')?.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    searchFood();
+  }
+});
