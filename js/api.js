@@ -1,6 +1,7 @@
 const container = document.getElementById('food-container');
 let currentPage = 1; // Track current page
 let lastQuery = '';  // Keep track of last search query
+let debounceTimer = null;
 
 // Create the popup
 const popup = document.createElement('div');
@@ -75,7 +76,11 @@ function displayMeals(meals) {
 }
 
 function fetchMeals(query) {
-  if (!query) query = ''; // default to empty
+  if (!query){
+    container.innerHTML = '<p>Please enter a Food Item to search!....</p>';
+    return;
+  }
+
   lastQuery = query; // store query for pagination
   showLoading();
 
@@ -91,19 +96,18 @@ function fetchMeals(query) {
     });
 }
 
-function searchFood() {
+function debounceSearch() {
   const query = document.getElementById('search').value.trim();
-  if(query === '') {
-    showPopup('Please enter a Food Item to search!');
-    return;
+  if(debounceTimer) {
+    clearTimeout(debounceTimer);
   }
-  currentPage = 1; // reset to first page
-  fetchMeals(query);
+
+  debounceTimer = setTimeout(() => {
+    currentPage = 1;
+    fetchMeals(query);
+  }, 5000); // ms debounce
 }
 
-// Trigger search on enter key
-document.getElementById('search')?.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    searchFood();
-  }
-});
+document.getElementById('search')?.addEventListener('input', debounceSearch);
+
+container.innerHTML = '<p>Please enter a Food Item to search!....</p>';
