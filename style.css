@@ -693,7 +693,7 @@ button:hover {
   position: absolute;
   top: 15px;
   right: -10px;
-  background: #ff4757;
+  background: #110102;
   color: white;
   border-radius: 50%;
   width: 22px;
@@ -761,7 +761,7 @@ button:hover {
 }
 
 .close-btn:hover {
-  color: #ff4757;
+  color: #0e0102;
 }
 
 /* Cart Empty State */
@@ -881,7 +881,7 @@ button:hover {
 }
 
 .clear-cart-btn,
-.checkout-btn {
+/* .checkout-btn {
   flex: 1;
   padding: 14px;
   border: none;
@@ -890,7 +890,7 @@ button:hover {
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s;
-}
+} */
 
 .clear-cart-btn {
   background: #ff4757;
@@ -902,7 +902,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
-.checkout-btn {
+/* .checkout-btn {
   background: #28a745;
   color: white;
 }
@@ -910,7 +910,7 @@ button:hover {
 .checkout-btn:hover {
   background: #218838;
   transform: translateY(-2px);
-}
+} */
 
 /* Add to Cart Button on Food Cards */
 .food-card {
@@ -953,3 +953,19 @@ button:hover {
     flex-direction: column;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ...........contact section........ */

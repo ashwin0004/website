@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="contact.css">
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "Qj5hykEw9bLG01clW",
+      });
+   })();
+</script>
+
+<script src="js/api.js"></script>
+</head>
+<body>
+
+    <div class="containers">
+        <h2>Contact Us</h2>
+        <form action="#" method="POST">
+            
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+</body>
+</html>
