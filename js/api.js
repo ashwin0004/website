@@ -285,3 +285,7 @@ container.innerHTML = '<p>Please enter a Food Item to search!....</p>';
 
 // Load cart on page load
 loadCart();
+
+
+
+
